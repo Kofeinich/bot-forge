@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Paths} from './core/paths/paths'
+import {ProfilePage} from "./pages/profile/ProfilePage";
+import {ProfileSettingsPage} from "./pages/profile-settings/ProfileSettingsPage";
+import {MainPage} from "./pages/main/MainPage";
+import {EditorPage} from "./pages/editor/EditorPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path={Paths.MAIN} element={<MainPage/>}/>
+                <Route path={Paths.EDITOR} element={<EditorPage/>}/>
+                <Route path={Paths.PROFILE} element={<ProfilePage/>}/>
+                <Route path={Paths.PROFILESETTINGS} element={<ProfileSettingsPage/>}/>
+            </Routes>
+        </BrowserRouter>
+
+    );
 }
 
-export default App;
