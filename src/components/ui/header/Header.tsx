@@ -1,8 +1,7 @@
 import { FaRobot } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
-import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import {IconButton, Flex, Icon, StackDirection, useBreakpointValue} from '@chakra-ui/react';
+import {IconButton, Flex, Icon, StackDirection, useBreakpointValue, Text} from '@chakra-ui/react';
 import React from "react";
 import { BsCodeSlash } from "react-icons/bs";
 import {Paths} from "../../../core/paths/paths";
@@ -16,13 +15,9 @@ export const Header = () => {
 
     return (
         <Flex justifyContent="space-between" alignItems="center" p={2}>
-            <IconButton
-                aria-label="menu"
-                icon={<Icon as={FiMenu} />}
-                size="lg"
-                variant="ghost"
-                fontSize="xl"
-            />
+            <Link to={Paths.MAIN}>
+                <Text variant="ghost" color={'orange'}>Главная</Text>
+            </Link>
             <Flex alignItems="center" justifyContent="center">
                 <Link to={Paths.EDITOR}>
                     <IconButton

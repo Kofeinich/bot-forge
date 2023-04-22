@@ -1,13 +1,12 @@
 import {Layout} from "../../components/ui/layout/Layout";
-import {YamlEditor} from "../../modules/yaml/YamlEditor";
 import React from "react";
-import {Yaml} from "../../modules/yaml/Yaml";
+import {MainYaml} from "../../modules/yaml/MainYaml";
 
 
 export const EditorPage = () => {
     return (
         <Layout>
-            <Yaml/>
+            <MainYaml/>
         </Layout>
     )
 }

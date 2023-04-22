@@ -1,41 +1,38 @@
-import React, { useState } from 'react';
-// @ts-ignore
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-yaml';
-import 'ace-builds/src-noconflict/theme-github';
-// @ts-ignore
-import YAML from 'js-yaml';
+import React from "react";
+import { useYamlStore } from "./store/editorStore";
+import YAML from "js-yaml";
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-yaml";
+import "ace-builds/src-noconflict/theme-github";
 
-interface YamlEditorProps {
-    initialValue?: string;
-    onChange?: (value: any) => void;
-}
-
-export const YamlEditor: React.FC<YamlEditorProps> = ({ initialValue, onChange }) => {
-    const [value, setValue] = useState(initialValue || '');
+export const YamlEditor: React.FC = () => {
+    const { yamlValue, setYamlValue, setParsedYaml, setError } = useYamlStore();
 
     const handleEditorChange = (newValue: string) => {
-        setValue(newValue);
+        setYamlValue(newValue);
+        setError(null);
 
         try {
             const parsedYaml = YAML.load(newValue);
-            onChange?.(parsedYaml);
+            setParsedYaml(parsedYaml);
         } catch (error) {
-            console.error(error);
+            setError(`Некорректный YAML документ ${error}`);
         }
     };
 
     return (
-        <AceEditor
-            mode="yaml"
-            theme="github"
-            value={value}
-            onChange={handleEditorChange}
-            name="yaml-editor"
-            editorProps={{ $blockScrolling: true }}
-            width="100%"
-            height="400px"
-            setOptions={{ useWorker: false }}
-        />
+        <>
+            <AceEditor
+                mode="yaml"
+                theme="github"
+                value={yamlValue}
+                onChange={handleEditorChange}
+                name="yaml-editor"
+                editorProps={{ $blockScrolling: true }}
+                width="100%"
+                height="400px"
+                setOptions={{ useWorker: false }}
+            />
+        </>
     );
 };

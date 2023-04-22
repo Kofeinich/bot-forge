@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-ignore
 import Lottie from "react-lottie";
 
 interface AnimationProps {
