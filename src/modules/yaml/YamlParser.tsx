@@ -1,6 +1,6 @@
 import React from 'react';
 import {useYamlStore} from "./store/editorStore";
-import {Flex, Text, Textarea} from "@chakra-ui/react";
+import {Flex, Text} from "@chakra-ui/react";
 
 export const YamlParser: React.FC = () => {
     const {parsedYaml} = useYamlStore()
